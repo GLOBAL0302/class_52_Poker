@@ -4,18 +4,30 @@ import Card from './components/Card';
 import {default as CardClass} from "lib/Card.ts"
 import CardDeck from './lib/CardDeck.ts';
 import React from 'react';
-let cardClass = new CardDeck;
+import PokerHand from './lib/PokerHand.ts';
+
+
+
+let cardClass = new CardDeck();
 function App() {
-
   const [cards, setCards]:CardClass[] = React.useState([])
+  const [roundResult, setRoundResult]:string = React.useState("")
 
+  const checkRoundResult =(value:CardClass[])=>{
+    let test =  new PokerHand(value);
+  }
+
+  // PROBLEM is the length of the cars is 0 before using checkRoundResult
   const reStartTheGame = ():void=>{
-    cardClass = new CardDeck;
+    cardClass = new CardDeck();
     setCards(cardClass.getCards(5))
+    console.log(cards.length);
+    checkRoundResult(cards)
   }
   const dealCard = ()=> {
-    let s= cardClass.getCards(5)
-    setCards(s)
+    setCards(cardClass.getCards(5))
+    console.log(cards.length);
+    checkRoundResult(cards)
   }
 
   return (
@@ -28,7 +40,7 @@ function App() {
           </button>
         </div>
         <div>
-          <p style={{color:"black"}}>Result of round: <strong>{"HERE IS POKERHAND RESULT"}</strong></p>
+          <p style={{color:"black"}}>Result of round: <strong>{roundResult}</strong></p>
         </div>
         <div className="playingCards faceImages">
           {cards.map((oneCard:CardClass, index:number)=>(
