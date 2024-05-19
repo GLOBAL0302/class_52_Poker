@@ -1,17 +1,11 @@
 
 import './App.css';
 import Card from './components/Card';
-import {Card as CardClass} from "/lib/Card.ts"
+import {default as CardClass} from "lib/Card.ts"
 import CardDeck from './lib/CardDeck.ts';
-import {ISuitsSymbol} from './types';
 import React from 'react';
 let cardClass = new CardDeck;
 function App() {
-  const suitsSymbol:ISuitsSymbol= {
-    "diams": "♦",
-    "hearts": "♥",
-    "clubs":"♣",
-    "spades":"♠"}
 
   const [cards, setCards]:CardClass[] = React.useState([])
 
@@ -32,6 +26,9 @@ function App() {
             onClick={cards.length >= 5? ()=>dealCard(): ()=>reStartTheGame()}
           >{cards.length >= 5? "Deal cards" : "Restart"}
           </button>
+        </div>
+        <div>
+          <p style={{color:"black"}}>Result of round: <strong>{"HERE IS POKERHAND RESULT"}</strong></p>
         </div>
         <div className="playingCards faceImages">
           {cards.map((oneCard:CardClass, index:number)=>(

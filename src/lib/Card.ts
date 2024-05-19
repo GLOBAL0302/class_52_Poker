@@ -6,4 +6,4 @@ class Card{
       this.suit = suit
   }
 }
-export default  Card
+export default Card
