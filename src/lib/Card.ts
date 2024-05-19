@@ -1,11 +1,9 @@
 
 class Card{
   constructor(
-    public rank:string, public suit:string){
+    public suit:string, public rank:string){
       this.rank = rank;
       this.suit = suit
   }
 }
-
-new Card("hel", "sd")
 export default  Card
