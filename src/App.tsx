@@ -11,23 +11,20 @@ import PokerHand from './lib/PokerHand.ts';
 let cardClass = new CardDeck();
 function App() {
   const [cards, setCards]:CardClass[] = React.useState([])
-  const [roundResult, setRoundResult]:string = React.useState("")
+  let roundResult:string = ""
 
   const checkRoundResult =(value:CardClass[])=>{
     let test =  new PokerHand(value);
+    roundResult = test.result;
   }
+  checkRoundResult(cards)
 
-  // PROBLEM is the length of the cars is 0 before using checkRoundResult
   const reStartTheGame = ():void=>{
     cardClass = new CardDeck();
     setCards(cardClass.getCards(5))
-    console.log(cards.length);
-    checkRoundResult(cards)
   }
   const dealCard = ()=> {
     setCards(cardClass.getCards(5))
-    console.log(cards.length);
-    checkRoundResult(cards)
   }
 
   return (

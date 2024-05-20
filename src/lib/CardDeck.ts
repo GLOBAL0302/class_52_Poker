@@ -3,11 +3,11 @@ import Card from './Card.ts';
 
 class CardDeck{
   constructor(
-    // for Test
+
     // public suits:string[] = ["diams", "hearts", "clubs", "spades"],
     // public ranks:string[] = ["2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K", "A"],
     public suits:string[] = ["spades"],
-    public ranks:string[] = ["10", "J", "Q", "K", "A"],
+    public ranks:(string| number)[] = [2, 3, 4, 5, 6, 7],
     public allCards:Card[]= []
   ) {
     for (const i of this.suits){

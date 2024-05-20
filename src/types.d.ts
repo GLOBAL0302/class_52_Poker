@@ -1,5 +1,5 @@
 export interface ICard{
-  rank:string,
+  rank:string | number,
   suit:string
 }
 

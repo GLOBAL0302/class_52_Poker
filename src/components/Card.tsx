@@ -7,7 +7,7 @@ const Card: React.FC<ICard> = ({rank, suit}) => {
     "clubs":"♣",
     "spades":"♠"}
   return (
-    <span className={`card rank-${rank} ${suit}`} >
+    <span className={`card rank-${typeof rank === "string" ? rank.toLocaleLowerCase() : rank} ${suit}`} >
       <span className="rank">{rank}</span>
       <span className="suit">{suitsSymbol[suit]}</span>
     </span>
