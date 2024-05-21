@@ -11,20 +11,20 @@ import PokerHand from './lib/PokerHand.ts';
 let cardClass = new CardDeck();
 function App() {
   const [cards, setCards]:CardClass[] = React.useState([])
-  let roundResult:string = ""
+  let roundResult:string = "";
 
   const checkRoundResult =(value:CardClass[])=>{
     let test =  new PokerHand(value);
     roundResult = test.result;
   }
-  checkRoundResult(cards)
+  checkRoundResult(cards);
 
   const reStartTheGame = ():void=>{
     cardClass = new CardDeck();
-    setCards(cardClass.getCards(5))
+    setCards(cardClass.getCards(5));
   }
   const dealCard = ()=> {
-    setCards(cardClass.getCards(5))
+    setCards(cardClass.getCards(5));
   }
 
   return (

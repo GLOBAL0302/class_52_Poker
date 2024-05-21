@@ -6,9 +6,9 @@ class PokerHand{
     public result:string = ""
   ) {
 
-    //findPairsFunc
+
     const findPairs = (value:Card[], num:number) =>{
-      let ranksList = ""
+      let ranksList = "";
       value.forEach((eachItem)=>{
         let amount =  value.filter(filterItem =>
           filterItem.rank === eachItem.rank
@@ -40,16 +40,16 @@ class PokerHand{
       return numArr.concat(strArr);
     };
 
-    //findPairsComb
+
     const oneAndTwoPairsComb = (value:Card[]) =>{
         if (findPairs(value, 2).length ===1) {
           this.result = "Одна пара (англ. one pair)";
         }
-        else if (findPairs(value, 2).length === 2){
+        else if (findPairs(value, 2).length === 2 && findPairs(value, 2) !== "10"){
           this.result = "Две пары (two pairs)";
         }
     }
-    //three of a kind comb
+
     const threeOfKindComb = (value:Card[]) =>{
       if(findPairs(value, 3)) this.result = "Тройка (three of a kind):"
     }
@@ -72,7 +72,7 @@ class PokerHand{
     const fullHouseComb = (value:Card[])=>{
       let twoPairs = findPairs(value, 2);
       let threePairs = findPairs(value, 3);
-      if(!twoPairs.includes(threePairs))this.result="Фулл-хаус (full house)";
+      if(!twoPairs.includes(threePairs) && twoPairs.length == 2 && threePairs.length == 3)this.result="Фулл-хаус (full house)";
     }
     const fourOfKindComb = (value:Card[])=>{
       if(findPairs(value, 4))this.result = "Каре/Четвёрка/Покер (four of a kind)"
@@ -104,16 +104,7 @@ class PokerHand{
     straightFlushComb(this.cardList);
     royalFlushComb(this.cardList);
 
-
-
-
-
-
-
-
-
   }
 
 }
-
 export default PokerHand
