@@ -3,16 +3,13 @@ import Card from './Card.ts';
 
 class CardDeck{
   constructor(
-
-    // public suits:string[] = ["diams", "hearts", "clubs", "spades"],
-    // public ranks:string[] = [2, 3, 4, 5, 6, 7, 8, 9, 10, "J", "Q", "K", "A"],
     public suits:string[] = ["diams", "hearts", "clubs", "spades"],
-    public ranks:(string| number)[] = [10, "J"],
+    public ranks:(string| number)[] = [2, 3, 4, 5, 6, 7, 8, 9, 10, "J", "Q", "K", "A"],
     public allCards:Card[]= []
   ) {
     for (const i of this.suits){
       for (const j of this.ranks){
-        this.allCards.push(new Card(i, j))
+        this.allCards.push(new Card(i, j));
       }
     }
   }
@@ -28,7 +25,7 @@ class CardDeck{
     if(num > this.allCards.length)num = this.allCards.length;
     const cardsToReturn:Card[] = [];
     for(let i = 0; i < num; i++){
-      cardsToReturn.push(this.getCard())
+      cardsToReturn.push(this.getCard());
     }
     return cardsToReturn
   }

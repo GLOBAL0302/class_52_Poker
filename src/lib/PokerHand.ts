@@ -17,7 +17,7 @@ class PokerHand{
       })
       return ranksList;
     }
-    const cardsInRow: (number|string)[] = [2, 3, 4, 5, 6, 7, 8, 9, 10, "J", "Q", "K", "A"];
+    let cardsInRow: (number|string)[] = [2, 3, 4, 5, 6, 7, 8, 9, 10, "J", "Q", "K", "A"];
     const sortListFunc = (arr: (string | number)[]) => {
       let numArr = arr.filter(
         item => typeof item === 'number')
@@ -63,6 +63,7 @@ class PokerHand{
         .join("").trim() === allRanksSorted.join("").trim() && allRanksSorted.length >= 5){
         this.result = "Стрит (straight)";
       }
+      return allRanksSorted
     }
     const flushComb =(value:Card[])=>{
       let total = value.filter(item=> value[0].suit === item.suit)
@@ -73,8 +74,25 @@ class PokerHand{
       let threePairs = findPairs(value, 3);
       if(!twoPairs.includes(threePairs))this.result="Фулл-хаус (full house)";
     }
-    const fourOfKind = (value:Card[])=>{
+    const fourOfKindComb = (value:Card[])=>{
+      if(findPairs(value, 4))this.result = "Каре/Четвёрка/Покер (four of a kind)"
+    }
+    const straightFlushComb = (value:Card[])=>{
+      let sameSuit = value.filter(item => value[0].suit === item.suit);
+      let ranks = sortListFunc(sameSuit.map(item => item.rank));
 
+      cardsInRow = [2, 3, 4, 5, 6, 7, 8, 9, 10, "J", "Q", "K", "A"];
+
+      if(cardsInRow.splice(cardsInRow.indexOf(ranks[0])).join("") == ranks.join("") && ranks.length >= 5){
+        this.result = "Стрит-флэш (straight flush)";
+      }
+
+    }
+
+    const royalFlushComb = (value:Card[])=>{
+      let oneSuits = value.filter(item => item.suit === value[0].suit);
+      let ranks = sortListFunc(oneSuits.map(item=> item.rank));
+      if (ranks.join("") === "10JQKA")this.result = "Роял-флэш (Royal flush)";
     }
 
     oneAndTwoPairsComb(this.cardList);
@@ -82,7 +100,9 @@ class PokerHand{
     straightComb(this.cardList);
     flushComb(this.cardList);
     fullHouseComb(this.cardList);
-    fourOfKind(this.cardList)
+    fourOfKindComb(this.cardList);
+    straightFlushComb(this.cardList);
+    royalFlushComb(this.cardList);
 
 
 
